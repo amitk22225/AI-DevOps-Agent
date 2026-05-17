@@ -21,13 +21,13 @@ In **Settings → Secrets and variables → Actions → Secrets**, add:
 
 | Secret | Description |
 |--------|-------------|
-| `AWS_ACCOUNT_ID` | `948451199137` |
+| `AWS_ACCOUNT_ID` | `123456789012` |
 
 In **Settings → Secrets and variables → Actions → Variables**, add:
 
 | Variable | Value |
 |----------|-------|
-| `AWS_ACCOUNT_ID` | `948451199137` |
+| `AWS_ACCOUNT_ID` | `123456789012` |
 
 ## 3. AWS IAM OIDC (one-time)
 

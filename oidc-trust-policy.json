@@ -4,7 +4,7 @@
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::948451199137:oidc-provider/token.actions.githubusercontent.com"
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
@@ -12,7 +12,7 @@
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:amitk22225/AI-DevOps-Agent:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:amitk22225/AI-DevOps-Agent:*"
         }
       }
     }
