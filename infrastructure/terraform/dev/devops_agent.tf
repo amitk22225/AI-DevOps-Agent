@@ -1,4 +1,4 @@
-# AWS DevOps Agent — my-agents-dev
+# AWS DevOps Agent — my-agents1234-dev
 # Docs: https://docs.aws.amazon.com/devopsagent/latest/userguide/
 # Supported regions: us-east-1, us-west-2, ap-southeast-2, ap-northeast-1, eu-central-1, eu-west-1
 
@@ -26,7 +26,7 @@ resource "aws_iam_role" "devops_agent_space" {
   })
 
   tags = {
-    Name = "my-agents-dev-agentspace-role"
+    Name = "my-agents1234-dev-agentspace-role"
   }
 }
 
@@ -59,7 +59,7 @@ resource "aws_iam_role_policy_attachment" "devops_operator" {
 resource "awscc_devopsagent_agent_space" "main" {
   depends_on = [time_sleep.iam_propagation]
 
-  agent_space_name        = "my-agents-dev"
+  agent_space_name        = "my-agents1234-dev"
   description             = "Agent space for platform automation"
   agent_response_language = "en"
 
@@ -67,11 +67,11 @@ resource "awscc_devopsagent_agent_space" "main" {
   operator_role_name = "DevOpsAgentRole-WebappAdmin"
 
   tags = [
-    { key = "Project", value = "my-agents" },
+    { key = "Project", value = "my-agents1234" },
     { key = "Environment", value = "dev" },
     { key = "ManagedBy", value = "agentforge" },
     { key = "Team", value = "platform" },
-    { key = "AgentSpace", value = "my-agents-dev" }
+    { key = "AgentSpace", value = "my-agents1234-dev" }
   ]
 }
 

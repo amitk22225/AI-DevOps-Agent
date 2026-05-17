@@ -7,7 +7,7 @@ resource "aws_iam_openid_connect_provider" "github" {
 }
 
 resource "aws_iam_role" "deploy" {
-  name = "my-agents-dev-deploy"
+  name = "my-agents1234-dev-deploy"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

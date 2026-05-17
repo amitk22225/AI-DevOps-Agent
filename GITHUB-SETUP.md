@@ -1,6 +1,6 @@
 # Push to GitHub and run Terraform Plan
 
-Generated for **my-agents** (`dev`).
+Generated for **my-agents1234** (`dev`).
 
 ## 1. Create GitHub repository
 
@@ -15,16 +15,24 @@ git push -u origin main
 
 ## 2. Configure GitHub repository
 
+Auth method: **GitHub OIDC → IAM role**
+
+In **Settings → Secrets and variables → Actions → Secrets**, add:
+
+| Secret | Description |
+|--------|-------------|
+| `AWS_ACCOUNT_ID` | `948451199137` |
+
 In **Settings → Secrets and variables → Actions → Variables**, add:
 
 | Variable | Value |
 |----------|-------|
-| `AWS_ACCOUNT_ID` | `123456789012` |
+| `AWS_ACCOUNT_ID` | `948451199137` |
 
 ## 3. AWS IAM OIDC (one-time)
 
 1. Create OIDC identity provider for `https://token.actions.githubusercontent.com`
-2. Create IAM role `my-agents-dev-deploy` with trust policy from `oidc-trust-policy.json`
+2. Create IAM role `my-agents1234-dev-deploy` with trust policy from `oidc-trust-policy.json`
 3. Attach permissions (e.g. PowerUserAccess or scoped Terraform policy)
 4. Optional: apply `infrastructure/terraform/dev/bootstrap-oidc.tf` first
 
