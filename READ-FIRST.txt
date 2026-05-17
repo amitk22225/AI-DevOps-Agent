@@ -1,0 +1,6 @@
+IMPORTANT: AgentForge does NOT upload to GitHub automatically.
+
+1. Extract this ZIP on your computer.
+2. Run scripts/push-to-github.ps1 (Windows) or scripts/push-to-github.sh (Mac/Linux)
+   OR follow GITHUB-SETUP.md manually.
+3. Then open your repo on GitHub — you should see .github/workflows/ and infrastructure/

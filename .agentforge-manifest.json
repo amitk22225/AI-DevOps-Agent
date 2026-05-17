@@ -1,0 +1,10 @@
+{
+  "generator": "AgentForge",
+  "version": "2.0.0",
+  "project": "my-agents",
+  "environment": "dev",
+  "region": "us-east-1",
+  "iacTool": "terraform",
+  "generatedAt": "2026-05-17T20:27:08.952Z",
+  "fileCount": 15
+}
