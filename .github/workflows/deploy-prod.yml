@@ -1,0 +1,48 @@
+name: Deploy prod-agents (prod)
+
+on:
+  push:
+    branches: [main]
+    paths: ['infrastructure/terraform/prod/**', '.github/workflows/**']
+  pull_request:
+    branches: [main]
+    paths: ['infrastructure/terraform/prod/**']
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-prod-agents-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production-approval
+    defaults:
+      run:
+        working-directory: infrastructure/terraform/prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/prod-agents-prod-deploy
+          aws-region: us-east-1
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform fmt -check -recursive
+        continue-on-error: true
+      - run: terraform validate
+      - name: Terraform Plan
+        run: terraform plan -no-color -out=tfplan
+      - name: Upload plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-prod
+          path: tfplan
+          retention-days: 5
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'

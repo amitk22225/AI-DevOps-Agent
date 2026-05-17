@@ -1,6 +1,6 @@
 # Push to GitHub and run Terraform Plan
 
-Generated for **my-agents** (`dev`).
+Generated for **prod-agents** (`prod`).
 
 ## 1. Create GitHub repository
 
@@ -19,14 +19,14 @@ In **Settings → Secrets and variables → Actions → Variables**, add:
 
 | Variable | Value |
 |----------|-------|
-| `AWS_ACCOUNT_ID` | `948451199137` |
+| `AWS_ACCOUNT_ID` | `123456789012` |
 
 ## 3. AWS IAM OIDC (one-time)
 
 1. Create OIDC identity provider for `https://token.actions.githubusercontent.com`
-2. Create IAM role `my-agents-dev-deploy` with trust policy from `oidc-trust-policy.json`
+2. Create IAM role `prod-agents-prod-deploy` with trust policy from `oidc-trust-policy.json`
 3. Attach permissions (e.g. PowerUserAccess or scoped Terraform policy)
-4. Optional: apply `infrastructure/terraform/dev/bootstrap-oidc.tf` first
+4. Optional: apply `infrastructure/terraform/prod/bootstrap-oidc.tf` first
 
 ## 4. Terraform remote state (one-time)
 
@@ -36,12 +36,12 @@ Create S3 bucket and DynamoDB table referenced in `main.tf` backend block before
 
 Workflows included:
 
-- `.github/workflows/terraform-plan-dev.yml` — **plan only** on every PR (+ comment)
-- `.github/workflows/deploy-dev.yml` — plan on PR, **apply** on push to `main`
+- `.github/workflows/terraform-plan-prod.yml` — **plan only** on every PR (+ comment)
+- `.github/workflows/deploy-prod.yml` — plan on PR, **apply** on push to `main`
 
 ```bash
 git checkout -b feature/my-change
-# edit files under infrastructure/terraform/dev/
+# edit files under infrastructure/terraform/prod/
 git add .
 git commit -m "Update infrastructure"
 git push -u origin feature/my-change
@@ -51,7 +51,7 @@ git push -u origin feature/my-change
 ## 6. Local plan (optional)
 
 ```bash
-cd infrastructure/terraform/dev
+cd infrastructure/terraform/prod
 terraform init
 terraform plan
 ```

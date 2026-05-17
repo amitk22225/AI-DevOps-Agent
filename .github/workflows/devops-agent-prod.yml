@@ -1,0 +1,26 @@
+name: DevOps Agent infrastructure (prod)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['infrastructure/terraform/prod/devops_agent.tf']
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  devops-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/prod-agents-prod-deploy
+          aws-region: us-east-1
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+        working-directory: infrastructure/terraform/prod
+      - run: terraform apply -auto-approve -target=awscc_devopsagent_agent_space.main
+        working-directory: infrastructure/terraform/prod
