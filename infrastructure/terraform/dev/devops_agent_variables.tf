@@ -1,5 +1,5 @@
 
 variable "monitoring_account_id" {
   type    = string
-  default = "123456789012"
+  default = "948451199137"
 }

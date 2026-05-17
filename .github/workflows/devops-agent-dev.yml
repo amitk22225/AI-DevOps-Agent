@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::123456789012:role/my-agents1234-dev-deploy
+          role-to-assume: arn:aws:iam::948451199137:role/my-agents1234-dev-deploy
           aws-region: us-east-1
       - uses: hashicorp/setup-terraform@v3
       - run: terraform init
