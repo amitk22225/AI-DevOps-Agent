@@ -59,12 +59,14 @@ resource "aws_iam_role_policy_attachment" "devops_operator" {
 resource "awscc_devopsagent_agent_space" "main" {
   depends_on = [time_sleep.iam_propagation]
 
-  agent_space_name        = "test"
-  description             = "Agent space for platform automation"
-  agent_response_language = "en"
+  name        = "test"
+  description = "Agent space for platform automation"
 
-  agent_space_role_name = "DevOpsAgentRole-AgentSpace"
-  operator_role_name = "DevOpsAgentRole-WebappAdmin"
+  operator_app {
+    iam {
+      operator_app_role_arn = aws_iam_role.devops_operator[0].arn
+    }
+  }
 
   tags = [
     { key = "Project", value = "my-agents1234" },

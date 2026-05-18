@@ -12,3 +12,9 @@ variable "existing_vpc_id" {
   type    = string
   default = null
 }
+
+variable "create_github_oidc" {
+  description = "Create GitHub Actions OIDC provider (set false if it already exists in this account)"
+  type        = bool
+  default     = true
+}

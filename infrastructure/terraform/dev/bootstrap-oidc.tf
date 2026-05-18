@@ -1,9 +1,14 @@
 # Bootstrap IAM for CI/CD (apply once before pipelines)
+data "tls_certificate" "github_actions" {
+  count = var.create_github_oidc ? 1 : 0
+  url   = "https://token.actions.githubusercontent.com"
+}
+
 resource "aws_iam_openid_connect_provider" "github" {
   count = var.create_github_oidc ? 1 : 0
   url             = "https://token.actions.githubusercontent.com"
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = ["6938fd4d98bab03fa0217a1d9c1556e031cbf6e"]
+  thumbprint_list = [replace(data.tls_certificate.github_actions[0].certificates[0].sha1_fingerprint, ":", "")]
 }
 
 resource "aws_iam_role" "deploy" {
