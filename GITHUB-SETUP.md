@@ -38,7 +38,7 @@ In **Settings → Secrets and variables → Actions → Variables**, add:
 
 ## 4. Terraform remote state (one-time)
 
-Create S3 bucket and DynamoDB table referenced in `main.tf` backend block before CI runs.
+Create the S3 state bucket referenced in `main.tf` before CI runs (no DynamoDB table required).
 
 ## 5. Run Terraform Plan on Pull Request
 
