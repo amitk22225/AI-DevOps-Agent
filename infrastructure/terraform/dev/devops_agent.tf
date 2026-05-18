@@ -63,15 +63,15 @@ resource "awscc_devopsagent_agent_space" "main" {
   description = "Agent space for platform automation"
 
   operator_app_role_arn = aws_iam_role.devops_operator[0].arn
-  }
+  
 
-/*  tags = [
+  tags = [
     { key = "Project", value = "my-agents1234" },
     { key = "Environment", value = "dev" },
     { key = "ManagedBy", value = "agentforge" },
     { key = "Team", value = "platform" },
     { key = "AgentSpace", value = "test" }
-  ]*/
+  ]
 }
 
 resource "awscc_devopsagent_association" "primary_monitor" {
