@@ -62,8 +62,11 @@ resource "awscc_devopsagent_agent_space" "main" {
   name        = "test"
   description = "Agent space for platform automation"
 
-  # operator_app_role_arn = aws_iam_role.devops_operator[0].arn
-  
+  operator_app {
+    iam {
+      operator_app_role_arn = aws_iam_role.devops_operator[0].arn
+    }
+  }
 
   tags = [
     { key = "Project", value = "my-agents1234" },
